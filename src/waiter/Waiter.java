@@ -15,7 +15,7 @@ import java.util.PriorityQueue;
 
 import allclasses.Food;
 import allclasses.RestaurantItem;
-import allclasses.OrderList;
+import allclasses.Order;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,11 +29,11 @@ public class Waiter
     private ArrayList<String> ActiveTables = null;
     private int MasterGamePin;
     
-    private OrderList Orders[];
+    private Order Orders[];
     
     public Waiter()
     {
-        Orders = new OrderList[16];
+        Orders = new Order[16];
         Notifications = new PriorityQueue();
         ActiveTables = new ArrayList();
     }
@@ -101,7 +101,7 @@ public class Waiter
                         System.out.println("About to receive order.");
                         
                         // read the order 
-                        OrderList tempOrder = (OrderList)ObjIn.readObject();
+                        Order tempOrder = (Order)ObjIn.readObject();
                         
                         Orders[tempOrder.GetTableNum()-1] = tempOrder;
                         // test loop checking contents
