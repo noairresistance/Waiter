@@ -119,6 +119,11 @@ public class Waiter
                         // put the message in the form table # requested help
                         // put the message in the queue
                     }
+                    else if(Message.startsWith("Paid")) //a table has paid for their order
+                    {
+                        System.out.println("Table has paid for their order!");
+                    }
+                    
                     else if(Message.equals("Shutdown"))
                     {
                         break;
