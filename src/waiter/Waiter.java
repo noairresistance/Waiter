@@ -16,8 +16,6 @@ import java.util.PriorityQueue;
 import allclasses.Food;
 import allclasses.RestaurantItem;
 import allclasses.Order;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Waiter
 {
