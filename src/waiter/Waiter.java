@@ -184,8 +184,8 @@ public class Waiter
         newWaiter.Handshake();
         newWaiter.waittest();
        
-        newWaiter.ModifyOrder(1);
-        newWaiter.SendModifiedOrder(1);
+        //newWaiter.ModifyOrder(1);
+        //newWaiter.SendModifiedOrder(1);
         
         while(newWaiter.Connected)
         {
