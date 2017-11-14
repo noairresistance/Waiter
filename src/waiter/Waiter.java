@@ -12,13 +12,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList; // test for order
 import java.util.PriorityQueue;
-
-import Food.*;
-
-/*import allclasses.Food;
+/*
+import allclasses.Food;
 import allclasses.RestaurantItem;
-import allclasses.Order;*/
-
+import allclasses.Order;
+*/
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import Food.*;
+import GUI.*;
 
 public class Waiter
 {
@@ -32,11 +34,17 @@ public class Waiter
     
     private Order Orders[];
     
+    
+    
     public Waiter()
     {
         Orders = new Order[16];
         Notifications = new PriorityQueue();
         ActiveTables = new ArrayList();
+        createFrame();//Creates the waiter's GUI frame
+        
+        
+        
     }
     
     // this function is used to connect the waiter to the server
@@ -105,6 +113,7 @@ public class Waiter
                         Order tempOrder = (Order)ObjIn.readObject();
                         
                         Orders[tempOrder.GetTableNum()-1] = tempOrder;
+                        
                         // test loop checking contents
                         for(int i = 0; i < tempOrder.GetOrderSize(); i++)
                         {
@@ -193,5 +202,10 @@ public class Waiter
             
         }
         newWaiter.CloseConnection();
+    }
+    
+    public void createFrame()
+    {
+        new Thread(new Frame()).start();
     }
 }
