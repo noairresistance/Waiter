@@ -13,11 +13,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList; // test for order
 import java.util.PriorityQueue;
 
-import allclasses.Food;
+import Food.*;
+
+/*import allclasses.Food;
 import allclasses.RestaurantItem;
-import allclasses.Order;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import allclasses.Order;*/
+
 
 public class Waiter
 {
@@ -134,7 +135,7 @@ public class Waiter
             }
             catch(Exception e)
             {
-                System.out.println("Failed to receive message from server.");
+                System.out.println("Failed to receive message from server." + e);
             }
         }
     }
