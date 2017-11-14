@@ -13,9 +13,16 @@ public class Frame extends javax.swing.JFrame implements Runnable
      */
     public Frame()
     {
+        //Crate Frame
         initComponents();
-        setSize(400, 500);
+        setSize(400, 520);
         setLocation(1030, 0);
+        
+        //Create and add MainPanel
+        MainPanel mainPanel = new MainPanel();
+        mainPanel.setSize(400, 500);
+        add(mainPanel);
+        
         setVisible(true);
     }
 

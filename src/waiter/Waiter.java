@@ -113,6 +113,7 @@ public class Waiter
                         Order tempOrder = (Order)ObjIn.readObject();
                         
                         Orders[tempOrder.GetTableNum()-1] = tempOrder;
+                        
                         // test loop checking contents
                         for(int i = 0; i < tempOrder.GetOrderSize(); i++)
                         {
