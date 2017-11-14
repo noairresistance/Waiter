@@ -20,6 +20,7 @@ import allclasses.Order;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Food.*;
+import GUI.*;
 
 public class Waiter
 {
@@ -33,11 +34,17 @@ public class Waiter
     
     private Order Orders[];
     
+    
+    
     public Waiter()
     {
         Orders = new Order[16];
         Notifications = new PriorityQueue();
         ActiveTables = new ArrayList();
+        createFrame();//Creates the waiter's GUI frame
+        
+        
+        
     }
     
     // this function is used to connect the waiter to the server
@@ -194,5 +201,10 @@ public class Waiter
             
         }
         newWaiter.CloseConnection();
+    }
+    
+    public void createFrame()
+    {
+        new Thread(new Frame()).start();
     }
 }
