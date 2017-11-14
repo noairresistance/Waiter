@@ -115,12 +115,17 @@ public class Waiter
                         Orders[tempOrder.GetTableNum()-1] = tempOrder;
                         
                         // test loop checking contents
+                        for(int i = 0; i < tempOrder.getDrink().size(); i++)
+                        {
+                            System.out.println(tempOrder.getDrink().get(i).GetName());
+                        }
                         for(int i = 0; i < tempOrder.GetOrderSize(); i++)
                         {
-                            System.out.println(tempOrder.GetItem(i).GetName());
-                            System.out.println(((Food)tempOrder.GetItem(i)).GetIngredients(0));
+                            System.out.println(tempOrder.getFoodItem().get(i).GetName());
                         }
                         // add order to list of orders
+                        System.out.println("Order Received");
+                        
                     }
                     else if(Message.startsWith("Help")) // a table called for assistance
                     {
