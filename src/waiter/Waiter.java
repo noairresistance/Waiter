@@ -12,12 +12,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList; // test for order
 import java.util.PriorityQueue;
-
+/*
 import allclasses.Food;
 import allclasses.RestaurantItem;
 import allclasses.Order;
+*/
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Food.*;
 
 public class Waiter
 {
