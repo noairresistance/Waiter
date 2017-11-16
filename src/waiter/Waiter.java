@@ -141,6 +141,7 @@ public class Waiter
                     else if(Message.equals("Refill"))
                     {
                         String refill = ObjIn.readUTF();
+                        Messages.add(refill);
                         System.out.println(refill);
                     }
                     else if(Message.equals("Shutdown"))
