@@ -29,7 +29,7 @@ public class Waiter
     private ObjectOutputStream ObjOut = null; // the waiter's ouput Stream
     private boolean Connected = false; //
     private PriorityQueue<String> Notifications = null;
-    private ArrayList<String> ActiveTables = null;
+    private ArrayList<String> Messages = null;
     private int MasterGamePin;
     
     private Order Orders[];
@@ -40,7 +40,7 @@ public class Waiter
     {
         Orders = new Order[16];
         Notifications = new PriorityQueue();
-        ActiveTables = new ArrayList();
+        Messages = new ArrayList();
         createFrame();//Creates the waiter's GUI frame
         
         
@@ -138,7 +138,11 @@ public class Waiter
                     {
                         System.out.println("Table has paid for their order!");
                     }
-                    
+                    else if(Message.equals("Refill"))
+                    {
+                        String refill = ObjIn.readUTF();
+                        System.out.println(refill);
+                    }
                     else if(Message.equals("Shutdown"))
                     {
                         break;
