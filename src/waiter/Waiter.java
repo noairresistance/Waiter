@@ -127,12 +127,11 @@ public class Waiter
                         System.out.println("Order Received");
                         
                     }
-                    else if(Message.startsWith("Help")) // a table called for assistance
+                    else if(Message.equals("Help")) // a table called for assistance
                     {
-                        System.out.println("Customer Requested Help.");
-                        // parse the command
-                        // put the message in the form table # requested help
-                        // put the message in the queue
+                        String help = ObjIn.readUTF();
+                        Messages.add(help);
+                        System.out.println(help);
                     }
                     else if(Message.startsWith("Paid")) //a table has paid for their order
                     {
