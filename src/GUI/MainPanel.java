@@ -5,22 +5,42 @@
  */
 package GUI;
 
-/**
- *
- * @author Buckwheat
- */
-public class MainPanel extends javax.swing.JPanel
+import Listener.Navigator;
+import javax.swing.JPanel;
+import waiter.Waiter;
+
+public class MainPanel extends javax.swing.JPanel 
 {
 
+    Waiter waiter;
     /**
      * Creates new form MainPanel
      */
-    public MainPanel()
+    public MainPanel(Waiter waiter)
     {
         initComponents();
         setSize(400, 500);
+        
+        this.waiter = waiter;
     }
-
+    
+    Navigator navigator = new Navigator()
+    {
+        void swapPanel(JPanel newPanel)
+        {
+            infoPanel.add(newPanel);
+            infoPanel.repaint();
+            infoPanel.revalidate();
+        }
+        
+        @Override
+        public void goToAssignedTables()
+        {
+            swapPanel(new AssignedTables(waiter.getOrders()));
+        }
+    
+    };
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,12 +68,19 @@ public class MainPanel extends javax.swing.JPanel
 
         buttonPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         buttonPanel.setOpaque(false);
-        buttonPanel.setLayout(new java.awt.GridLayout());
+        buttonPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         assignedTables.setForeground(new java.awt.Color(255, 255, 0));
         assignedTables.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         assignedTables.setText("ASSIGNED TABLES");
         assignedTables.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        assignedTables.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                assignedTablesMouseClicked(evt);
+            }
+        });
         buttonPanel.add(assignedTables);
 
         modifyOrder.setForeground(new java.awt.Color(255, 255, 0));
@@ -84,6 +111,8 @@ public class MainPanel extends javax.swing.JPanel
 
         infoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         infoPanel.setOpaque(false);
+        infoPanel.setPreferredSize(new java.awt.Dimension(388, 347));
+        infoPanel.setSize(new java.awt.Dimension(388, 347));
 
         javax.swing.GroupLayout infoPanelLayout = new javax.swing.GroupLayout(infoPanel);
         infoPanel.setLayout(infoPanelLayout);
@@ -100,12 +129,12 @@ public class MainPanel extends javax.swing.JPanel
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-                    .addComponent(notificationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(infoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(notificationPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -120,6 +149,11 @@ public class MainPanel extends javax.swing.JPanel
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void assignedTablesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_assignedTablesMouseClicked
+    {//GEN-HEADEREND:event_assignedTablesMouseClicked
+       navigator.goToAssignedTables();
+    }//GEN-LAST:event_assignedTablesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
