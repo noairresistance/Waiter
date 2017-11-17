@@ -5,32 +5,19 @@
  */
 package GUI;
 
-import waiter.Waiter;
-
-
-
-public class Frame extends javax.swing.JFrame implements Runnable
+/**
+ *
+ * @author Buckwheat
+ */
+public class OrderDetails extends javax.swing.JPanel
 {
 
-    Waiter waiter;
     /**
-     * Creates new form Frame
+     * Creates new form OrderDetails
      */
-    public Frame(Waiter waiter)
+    public OrderDetails()
     {
-        //Crate Frame
         initComponents();
-        setSize(400, 520);
-        setLocation(1030, 0);
-        
-        this.waiter = waiter;
-        
-        //Create and add MainPanel
-        MainPanel mainPanel = new MainPanel(waiter);
-        mainPanel.setSize(400, 500);
-        add(mainPanel);
-        
-        setVisible(true);
     }
 
     /**
@@ -43,10 +30,8 @@ public class Frame extends javax.swing.JFrame implements Runnable
     private void initComponents()
     {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
@@ -55,18 +40,7 @@ public class Frame extends javax.swing.JFrame implements Runnable
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    @Override
-    public void run()
-    {
-        /* Create and display the form */
-        //new Frame(waiter);
-            
-       
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

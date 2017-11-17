@@ -115,6 +115,11 @@ public class Waiter
                         Orders[tempOrder.GetTableNum()-1] = tempOrder;
                         
                         // test loop checking contents
+                        System.out.println("Receiving order from table " + tempOrder.GetTableNum());
+                        
+                        
+                        
+                        /*
                         for(int i = 0; i < tempOrder.getDrink().size(); i++)
                         {
                             System.out.println(tempOrder.getDrink().get(i).GetName());
@@ -123,6 +128,8 @@ public class Waiter
                         {
                             System.out.println(tempOrder.getFoodItem().get(i).GetName());
                         }
+                        */
+
                         // add order to list of orders
                         System.out.println("Order Received");
                         
@@ -214,8 +221,16 @@ public class Waiter
         newWaiter.CloseConnection();
     }
     
+    //Creates a new Frame and passes this waiter object to it
     public void createFrame()
     {
-        new Thread(new Frame()).start();
+        new Thread(new Frame(this)).start();
+        
+        
+    }
+    
+    public Order[] getOrders()
+    {
+        return Orders;
     }
 }
