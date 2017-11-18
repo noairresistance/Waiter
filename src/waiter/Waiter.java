@@ -141,9 +141,9 @@ public class Waiter
                         Messages.add(help);
                         System.out.println(help);
                     }
-                    else if(Message.startsWith("Paid")) //a table has paid for their order
+                    else if(Message.endsWith("cash.")|| (Message.endsWith("card."))) //a table has paid for their order
                     {
-                        System.out.println("Table has paid for their order!");
+                        //System.out.println("Table has paid for their order!");
                     }
                     else if(Message.startsWith("ToGoBox"))
                     {
