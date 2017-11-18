@@ -147,7 +147,7 @@ public class Waiter
                     }
                     else if(Message.startsWith("ToGoBox"))
                     {
-                        System.out.println("Table has requested a to go box!");
+                        //System.out.println("Table has requested a to go box!");
                     }
                     else if(Message.equals("Refill"))
                     {
