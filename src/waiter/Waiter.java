@@ -69,7 +69,8 @@ public class Waiter
             System.out.println("Sending Category"); // test
             ObjOut.writeUTF(Category);
             ObjOut.flush();
-      
+            
+
             Thread.sleep(500); // test
         }
         catch(Exception e)
@@ -144,6 +145,10 @@ public class Waiter
                     {
                         System.out.println("Table has paid for their order!");
                     }
+                    else if(Message.startsWith("ToGoBox"))
+                    {
+                        System.out.println("Table has requested a to go box!");
+                    }
                     else if(Message.equals("Refill"))
                     {
                         String refill = ObjIn.readUTF();
@@ -209,6 +214,7 @@ public class Waiter
         Waiter newWaiter = new Waiter();
         newWaiter.Handshake();
         newWaiter.waittest();
+        
        
         //newWaiter.ModifyOrder(1);
         //newWaiter.SendModifiedOrder(1);
