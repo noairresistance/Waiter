@@ -141,13 +141,26 @@ public class Waiter
                         Messages.add(help);
                         System.out.println(help);
                     }
-                    else if(Message.endsWith("cash.")|| (Message.endsWith("card."))) //a table has paid for their order
+                    else if(Message.endsWith("cash.")) //a table has paid for their order
                     {
                         //System.out.println("Table has paid for their order!");
+                        String payment_cash = ObjIn.readUTF();
+                        Messages.add(payment_cash);
+                        
                     }
-                    else if(Message.startsWith("ToGoBox"))
+                    
+                    else if(Message.endsWith("card.")) //a table has paid for their order
+                    {
+                        //System.out.println("Table has paid for their order!");
+                        String payment_card = ObjIn.readUTF();
+                        Messages.add(payment_card);
+                        
+                    }
+                    else if(Message.endsWith(".box"))
                     {
                         //System.out.println("Table has requested a to go box!");
+                        String togobox = ObjIn.readUTF();
+                        Messages.add(togobox);
                     }
                     else if(Message.equals("Refill"))
                     {
