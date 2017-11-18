@@ -8,4 +8,5 @@ package Listener;
 public interface Navigator
 {
     void goToAssignedTables();
+    void goToModifyOrder();
 }

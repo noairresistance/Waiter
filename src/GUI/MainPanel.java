@@ -38,6 +38,12 @@ public class MainPanel extends javax.swing.JPanel
         {
             swapPanel(new AssignedTables(waiter.getOrders()));
         }
+
+        @Override
+        public void goToModifyOrder()
+        {
+            swapPanel(new ModifyOrder(waiter.getOrders()));
+        }
     
     };
     
@@ -87,6 +93,13 @@ public class MainPanel extends javax.swing.JPanel
         modifyOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         modifyOrder.setText("MODIFY ORDER");
         modifyOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        modifyOrder.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                modifyOrderMouseClicked(evt);
+            }
+        });
         buttonPanel.add(modifyOrder);
 
         paymentOptions.setForeground(new java.awt.Color(255, 255, 0));
@@ -154,6 +167,11 @@ public class MainPanel extends javax.swing.JPanel
     {//GEN-HEADEREND:event_assignedTablesMouseClicked
        navigator.goToAssignedTables();
     }//GEN-LAST:event_assignedTablesMouseClicked
+
+    private void modifyOrderMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_modifyOrderMouseClicked
+    {//GEN-HEADEREND:event_modifyOrderMouseClicked
+        navigator.goToModifyOrder();
+    }//GEN-LAST:event_modifyOrderMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
