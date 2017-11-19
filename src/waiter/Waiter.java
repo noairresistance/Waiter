@@ -129,29 +129,32 @@ public class Waiter
                         String help = ObjIn.readUTF();
                         Messages.add(help);
                         messageListener.sendMessage(help);//Sends a message to the Waiter's GUI
-                        System.out.println(help);
+                        //System.out.println(help);
                     }
-                    else if(Message.endsWith("cash.")) //a table has paid for their order
+                    else if(Message.equals("Cash")) //a table has paid for their order
                     {
                         //System.out.println("Table has paid for their order!");
                         String payment_cash = ObjIn.readUTF();
+                        //System.out.println(payment_cash);
                         Messages.add(payment_cash);
                         messageListener.sendMessage(payment_cash);//Sends a message to the Waiter's GUI
                         
                     }
                     
-                    else if(Message.endsWith("card.")) //a table has paid for their order
+                    else if(Message.equals("Card")) //a table has paid for their order
                     {
                         //System.out.println("Table has paid for their order!");
                         String payment_card = ObjIn.readUTF();
+                        //System.out.println(payment_card);
                         Messages.add(payment_card);
                         messageListener.sendMessage(payment_card);//Sends a message to the Waiter's GUI
                         
                     }
-                    else if(Message.endsWith(".box"))
+                    else if(Message.equals("togo"))
                     {
                         //System.out.println("Table has requested a to go box!");
                         String togobox = ObjIn.readUTF();
+                        //System.out.println(togobox);
                         Messages.add(togobox);
                         messageListener.sendMessage(togobox);//Sends a message to the Waiter's GUI
                     }
