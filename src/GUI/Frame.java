@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Listener.MessageListener;
 import waiter.Waiter;
 
 
@@ -16,6 +17,7 @@ public class Frame extends javax.swing.JFrame implements Runnable
     /**
      * Creates new form Frame
      */
+
     public Frame(Waiter waiter)
     {
         //Crate Frame
@@ -23,7 +25,7 @@ public class Frame extends javax.swing.JFrame implements Runnable
         setSize(400, 520);
         setLocation(1030, 0);
         
-        this.waiter = waiter;
+        this.waiter = waiter;//give the waiter object to the GUI
         
         //Create and add MainPanel
         MainPanel mainPanel = new MainPanel(waiter);
@@ -32,7 +34,7 @@ public class Frame extends javax.swing.JFrame implements Runnable
         
         setVisible(true);
     }
-
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,13 +62,7 @@ public class Frame extends javax.swing.JFrame implements Runnable
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
-    public void run()
-    {
-        /* Create and display the form */
-        //new Frame(waiter);
-            
-       
-    }
+    public void run(){}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
