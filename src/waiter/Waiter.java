@@ -168,6 +168,18 @@ public class Waiter
                         Messages.add(refill);
                         System.out.println(refill);
                     }
+                    else if(Message.equals("Waiter"))
+                    {
+                        String requestWaiter = ObjIn.readUTF();
+                        Messages.add(requestWaiter);
+                        System.out.println(requestWaiter);
+                    }
+                    else if(Message.equals("Ready"))
+                    {
+                        String ready = ObjIn.readUTF();
+                        Messages.add(ready);
+                        System.out.println(ready);
+                    }
                     else if(Message.equals("Shutdown"))
                     {
                         break;
