@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Food.*;
 import GUI.*;
+import Listener.MessageListener;
 
 public class Waiter
 {
@@ -31,8 +32,9 @@ public class Waiter
     private PriorityQueue<String> Notifications = null;
     private ArrayList<String> Messages = null;
     private int MasterGamePin;
-    
     private Order Orders[];
+    public MessageListener messageListener;
+    
     
     
     
@@ -71,7 +73,7 @@ public class Waiter
             ObjOut.flush();
             
 
-            Thread.sleep(500); // test
+            Thread.sleep(500); // test       
         }
         catch(Exception e)
         {
@@ -118,19 +120,6 @@ public class Waiter
                         // test loop checking contents
                         System.out.println("Receiving order from table " + tempOrder.GetTableNum());
                         
-                        
-                        
-                        /*
-                        for(int i = 0; i < tempOrder.getDrink().size(); i++)
-                        {
-                            System.out.println(tempOrder.getDrink().get(i).GetName());
-                        }
-                        for(int i = 0; i < tempOrder.GetOrderSize(); i++)
-                        {
-                            System.out.println(tempOrder.getFoodItem().get(i).GetName());
-                        }
-                        */
-
                         // add order to list of orders
                         System.out.println("Order Received");
                         
@@ -139,6 +128,7 @@ public class Waiter
                     {
                         String help = ObjIn.readUTF();
                         Messages.add(help);
+                        messageListener.sendMessage(help);//Sends a message to the Waiter's GUI
                         System.out.println(help);
                     }
                     else if(Message.endsWith("cash.")) //a table has paid for their order
@@ -146,6 +136,7 @@ public class Waiter
                         //System.out.println("Table has paid for their order!");
                         String payment_cash = ObjIn.readUTF();
                         Messages.add(payment_cash);
+                        messageListener.sendMessage(payment_cash);//Sends a message to the Waiter's GUI
                         
                     }
                     
@@ -154,6 +145,7 @@ public class Waiter
                         //System.out.println("Table has paid for their order!");
                         String payment_card = ObjIn.readUTF();
                         Messages.add(payment_card);
+                        messageListener.sendMessage(payment_card);//Sends a message to the Waiter's GUI
                         
                     }
                     else if(Message.endsWith(".box"))
@@ -161,17 +153,19 @@ public class Waiter
                         //System.out.println("Table has requested a to go box!");
                         String togobox = ObjIn.readUTF();
                         Messages.add(togobox);
+                        messageListener.sendMessage(togobox);//Sends a message to the Waiter's GUI
                     }
                     else if(Message.equals("Refill"))
                     {
                         String refill = ObjIn.readUTF();
                         Messages.add(refill);
+                        messageListener.sendMessage(refill);//Sends a message to the Waiter's GUI
                         System.out.println(refill);
                     }
                     else if(Message.equals("Shutdown"))
                     {
                         break;
-                    }
+                    }       
                 }
                 
                 Connected = false;
@@ -251,4 +245,27 @@ public class Waiter
     {
         return Orders;
     }
+    
+    public ArrayList<String> getMessagesArrayList()
+    {
+        return Messages;
+    }
+    
+    public String getMessage(int i)
+    {
+        return Messages.get(i);
+    }
+    
+    //Called by MainPanel to give the messageListener to the Waiter
+    public void setMessageListerner(MessageListener messageListener)
+    {
+        this.messageListener = messageListener;
+    }
+    
+    public void removeMessage(int i)
+    {
+        Messages.remove(i);
+    }
+    
+    
 }

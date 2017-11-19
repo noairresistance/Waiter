@@ -5,7 +5,10 @@
  */
 package GUI;
 
+import Listener.MessageListener;
 import Listener.Navigator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import waiter.Waiter;
 
@@ -13,15 +16,53 @@ public class MainPanel extends javax.swing.JPanel
 {
 
     Waiter waiter;
+    
     /**
      * Creates new form MainPanel
      */
+        
+    MessageListener messageListener = new MessageListener()
+    {
+        @Override
+        public void sendMessage(String message)
+        {
+            for(int i = 0; i < 3; i++)    
+            {
+                notification.setText(message);
+                try
+                {
+                    if(i == 2)
+                    {
+                        Thread.sleep(1000);
+                    }
+                    else
+                    {
+                        Thread.sleep(500);
+                    }
+                    
+                } catch (InterruptedException ex)
+                {
+                    ex.printStackTrace();
+                }
+                notification.setText("");
+                try
+                {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }    
+        }
+    
+    };
     public MainPanel(Waiter waiter)
     {
         initComponents();
         setSize(400, 500);
         
         this.waiter = waiter;
+        getMessageListener();//Gives the messageListener to the Waiter
     }
     
     Navigator navigator = new Navigator()
@@ -38,8 +79,20 @@ public class MainPanel extends javax.swing.JPanel
         {
             swapPanel(new AssignedTables(waiter.getOrders()));
         }
+
+        @Override
+        public void goToAlerts()
+        {
+            swapPanel(new Alerts(waiter.getMessagesArrayList()));
+        }
     
     };
+    
+    //Gives the messageListener to the Waiter
+    void getMessageListener()
+    {
+        waiter.setMessageListerner(messageListener);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +107,7 @@ public class MainPanel extends javax.swing.JPanel
         jLabel4 = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
         assignedTables = new javax.swing.JLabel();
-        modifyOrder = new javax.swing.JLabel();
+        alerts = new javax.swing.JLabel();
         paymentOptions = new javax.swing.JLabel();
         notificationPanel = new javax.swing.JPanel();
         notification = new javax.swing.JLabel();
@@ -83,11 +136,18 @@ public class MainPanel extends javax.swing.JPanel
         });
         buttonPanel.add(assignedTables);
 
-        modifyOrder.setForeground(new java.awt.Color(255, 255, 0));
-        modifyOrder.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        modifyOrder.setText("MODIFY ORDER");
-        modifyOrder.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
-        buttonPanel.add(modifyOrder);
+        alerts.setForeground(new java.awt.Color(255, 255, 0));
+        alerts.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        alerts.setText("ALERTS");
+        alerts.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        alerts.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                alertsMouseClicked(evt);
+            }
+        });
+        buttonPanel.add(alerts);
 
         paymentOptions.setForeground(new java.awt.Color(255, 255, 0));
         paymentOptions.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -97,6 +157,10 @@ public class MainPanel extends javax.swing.JPanel
 
         notificationPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0), 2));
         notificationPanel.setOpaque(false);
+
+        notification.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        notification.setForeground(new java.awt.Color(255, 255, 0));
+        notification.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout notificationPanelLayout = new javax.swing.GroupLayout(notificationPanel);
         notificationPanel.setLayout(notificationPanelLayout);
@@ -155,13 +219,18 @@ public class MainPanel extends javax.swing.JPanel
        navigator.goToAssignedTables();
     }//GEN-LAST:event_assignedTablesMouseClicked
 
+    private void alertsMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_alertsMouseClicked
+    {//GEN-HEADEREND:event_alertsMouseClicked
+        navigator.goToAlerts();
+    }//GEN-LAST:event_alertsMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alerts;
     private javax.swing.JLabel assignedTables;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JPanel infoPanel;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel modifyOrder;
     private javax.swing.JLabel notification;
     private javax.swing.JPanel notificationPanel;
     private javax.swing.JLabel paymentOptions;
