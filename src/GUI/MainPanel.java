@@ -225,6 +225,7 @@ public class MainPanel extends javax.swing.JPanel
     }//GEN-LAST:event_alertsMouseClicked
 
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel alerts;
     private javax.swing.JLabel assignedTables;

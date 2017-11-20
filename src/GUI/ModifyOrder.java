@@ -5,39 +5,51 @@
  */
 package GUI;
 
+import Food.Food;
 import Food.Order;
 import Listener.OrderItemDetailsListener;
 import java.awt.Color;
 import javax.swing.JLabel;
 
-public class AssignedTables extends javax.swing.JPanel
+public class ModifyOrder extends javax.swing.JPanel
 {
     Order [] orders;
 
     /**
-     * Creates new form assignedTables
+     * Creates new form ModifyOrder
      */
-    public AssignedTables(Order [] orders)
+    public ModifyOrder(Order [] orders)
     {
         initComponents();
-        setSize(380, 340);
         this.orders = orders;
         displayTables();
     }
     
+    OrderItemDetailsListener listener = new OrderItemDetailsListener()
+    {
+        @Override
+        public void modifyItem(Food item)
+        {
+            
+        }
+
+        @Override
+        public void recallItem()
+        {
+            
+        }
+    };
+
     public void displayTables()
     {
         for(int i = 0; i < 16; i++)
         {
             if(orders[i] != null)
             {
-                add(new TableNumber((i+1)));
+                //add(new TableNumber(orders[i], listener, (i+1)));
             }
         }
     }
-
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,8 +60,16 @@ public class AssignedTables extends javax.swing.JPanel
     private void initComponents()
     {
 
-        setOpaque(false);
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
