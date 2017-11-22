@@ -169,12 +169,14 @@ public class Waiter
                     {
                         String requestWaiter = ObjIn.readUTF();
                         Messages.add(requestWaiter);
+                        messageListener.sendMessage(requestWaiter);//Sends a message to the Waiter's GUI
                         System.out.println(requestWaiter);
                     }
                     else if(Message.equals("Ready"))
                     {
                         String ready = ObjIn.readUTF();
                         Messages.add(ready);
+                        messageListener.sendMessage(ready);//Sends a message to the Waiter's GUI
                         System.out.println(ready);
                     }
                     else if(Message.equals("Shutdown"))
