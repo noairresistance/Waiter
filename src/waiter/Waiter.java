@@ -28,6 +28,7 @@ public class Waiter
     private int MasterGamePin; // the waiter's master game pin
     private Order Orders[]; // an array that holds an individual table's order
     public MessageListener messageListener;
+    private int ID;
     
     public Waiter()
     {
@@ -88,9 +89,13 @@ public class Waiter
         public void run()
         {
             String Message; // a string used to receive messages from the server
+            int tempID;
             
             try
             {
+                tempID = ObjIn.readInt();
+                ID = tempID + 1;
+                
                 // while the server can send messages
                 while((Message = ObjIn.readUTF())!= null)
                 {
