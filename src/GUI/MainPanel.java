@@ -77,13 +77,13 @@ public class MainPanel extends javax.swing.JPanel
         @Override
         public void goToAssignedTables()
         {
-            swapPanel(new AssignedTables(waiter.getOrders()));
+            swapPanel(new AssignedTables(waiter.getOrders(), infoPanel));
         }
 
         @Override
         public void goToAlerts()
         {
-            swapPanel(new Alerts(waiter.getMessagesArrayList()));
+            swapPanel(new Alerts(waiter.getMessagesArrayList(), infoPanel));
         }
     
     };

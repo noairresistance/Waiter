@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JPanel;
 
 //*************************************************************
 //This panel displays any alerts that are sent from the POS
@@ -17,12 +18,14 @@ import java.util.logging.Logger;
 public class Alerts extends javax.swing.JPanel
 {
     ArrayList<String> messages;
+    JPanel infoPanel;
     
     AlertPanelListener alertPanelListener = new AlertPanelListener()
     {
         @Override
         public void removeAlert(String message)
         {
+            
             //Remove all alerts
             removeAll();
             repaint();
@@ -39,10 +42,16 @@ public class Alerts extends javax.swing.JPanel
     };
     
     
-    public Alerts(ArrayList<String> messages)
+    public Alerts(ArrayList<String> messages, JPanel infoPanel)
     {
         initComponents();
         this.messages = messages;
+        this.infoPanel = infoPanel;
+        
+        infoPanel.removeAll();
+        infoPanel.repaint();
+        infoPanel.revalidate();
+        
         
         for(String s : messages)
         {

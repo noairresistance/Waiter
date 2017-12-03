@@ -9,19 +9,28 @@ import Food.Order;
 import Listener.OrderItemDetailsListener;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class AssignedTables extends javax.swing.JPanel
 {
     Order [] orders;
+    JPanel infoPanel;
 
     /**
      * Creates new form assignedTables
      */
-    public AssignedTables(Order [] orders)
+    public AssignedTables(Order [] orders, JPanel infoPanel)
     {
         initComponents();
         setSize(380, 340);
         this.orders = orders;
+        this.infoPanel = infoPanel;
+        
+        infoPanel.removeAll();
+        infoPanel.repaint();
+        infoPanel.revalidate();
+        
+        
         displayTables();
     }
     
